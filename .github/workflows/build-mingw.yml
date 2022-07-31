@@ -21,10 +21,14 @@ jobs:
       - name: git clone
         shell: cmd
         run: git clone https://github.com/glennrp/libpng.git && cd libpng && git checkout ${{ env.tagName }}
+        
+      - name: download zlib v1.2.12
+        shell: cmd
+        run: aria2c https://github.com/dirkarnez/zlib-prebuilt/releases/download/v1.2.12/zlib-v1.2.12-x86_64-posix-seh-rev0-8.1.0.zip && 7z.exe x zlib-v1.2.12-x86_64-posix-seh-rev0-8.1.0.zip -o zlib-v1.2.12-x86_64-posix-seh-rev0-8.1.0
 
       - name: cmake
         shell: cmd
-        run: cd libpng && cmake.exe -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX="build/${{ env.cmakeInstallationPath }}" -B./build
+        run: cd libpng && cmake.exe -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DZLIB_ROOT="..\zlib-v1.2.12-x86_64-posix-seh-rev0-8.1.0" -DBUILD_SHARED_LIBS=OFF -DPNG_SHARED=OFF -DPNG_EXECUTABLES=OFF -DPNG_TESTS=OFF -DCMAKE_INSTALL_PREFIX="build/${{ env.cmakeInstallationPath }}" -B./build
         
       - name: cmake build and install
         shell: cmd
