@@ -24,7 +24,7 @@ jobs:
         
       - name: download zlib v1.2.12
         shell: cmd
-        run: aria2c https://github.com/dirkarnez/zlib-prebuilt/releases/download/v1.2.12/zlib-v1.2.12-x86_64-posix-seh-rev0-8.1.0.zip && 7z.exe x zlib-v1.2.12-x86_64-posix-seh-rev0-8.1.0.zip -o zlib-v1.2.12-x86_64-posix-seh-rev0-8.1.0
+        run: aria2c https://github.com/dirkarnez/zlib-prebuilt/releases/download/v1.2.12/zlib-v1.2.12-x86_64-posix-seh-rev0-8.1.0.zip && 7z.exe x zlib-v1.2.12-x86_64-posix-seh-rev0-8.1.0.zip -ozlib-v1.2.12-x86_64-posix-seh-rev0-8.1.0
 
       - name: cmake
         shell: cmd
